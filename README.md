@@ -16,7 +16,6 @@ Store name and email information - Simple pastel UI with navigation
 
 Project Structure
 
-project/ app.py requirements.txt
 
     templates/
         index.html
