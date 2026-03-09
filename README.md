@@ -3,6 +3,10 @@ ChanyoungHan_web_technologies_hand_in_2
 
 Simple Flask Todo & Memo App
 
+Overview
+
+This project was created for Hand-in 2 of the Web Fundamentals Learning Unit. It was developed in accordance with the hand-in requirements.
+
 This is a simple web application built with Python (Flask) that allows
 users to write a Todo list and a memo, and store personal
 information.
