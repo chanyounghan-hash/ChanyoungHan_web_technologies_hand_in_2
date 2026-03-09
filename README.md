@@ -11,7 +11,7 @@ This is a simple web application built with Python (Flask) that allows
 users to write a Todo list and a memo, and store personal
 information.
 
-Features - Add and delete todo items - Write and save personal memo -
+Features:  Add and delete todo items - Write and save personal memo -
 Store name and email information - Simple pastel UI with navigation
 
 Project Structure
