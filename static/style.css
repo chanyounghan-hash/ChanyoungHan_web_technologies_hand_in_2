@@ -1,0 +1,95 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fef8f5;
+    color: #4a4a4a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0;
+}
+
+nav {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+nav a {
+    text-decoration: none;
+    color: #ff9a8b;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ff6b6b;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    width: 400px;
+}
+
+h2 {
+    color: #ff8c7a;
+    margin-top: 0;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ffe5d9;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #ff9a8b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff6b6b;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #fffcf9;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #fff0e6;
+}
+
+.delete-btn {
+    background-color: #ffd8d8;
+    color: #ff6b6b;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.success-msg {
+    color: #68b0ab;
+    margin-top: 10px;
+    font-weight: bold;
+}

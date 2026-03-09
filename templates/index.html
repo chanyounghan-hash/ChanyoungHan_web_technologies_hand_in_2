@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Simple App - Todo</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Todo</a>
+        <a href="/memo">Memo</a>
+        <a href="/info">My Info</a>
+    </nav>
+
+    <div class="container">
+        <h2>Todo List</h2>
+        <div style="display: flex;">
+            <input type="text" id="todo-input" placeholder="Add a new todo...">
+            <button onclick="addTodo()" style="margin-left: 10px;">Add</button>
+        </div>
+        <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+        // Load todos when page opens
+        fetch('/todos')
+            .then(res => res.json())
+            .then(data => renderTodos(data));
+
+        function renderTodos(todos) {
+            const list = document.getElementById('todo-list');
+            list.innerHTML = '';
+            todos.forEach((todo, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span>${todo}</span>
+                    <button class="delete-btn" onclick="deleteTodo(${index})">Delete</button>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        function addTodo() {
+            const input = document.getElementById('todo-input');
+            const task = input.value;
+            if (!task) return;
+
+            fetch('/todos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ task: task })
+            })
+            .then(res => res.json())
+            .then(data => {
+                renderTodos(data);
+                input.value = '';
+            });
+        }
+
+        function deleteTodo(index) {
+            fetch(`/todos/${index}`, { method: 'DELETE' })
+                .then(res => res.json())
+                .then(data => renderTodos(data));
+        }
+    </script>
+</body>
+</html>

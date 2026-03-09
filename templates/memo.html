@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Simple App - Memo</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Todo</a>
+        <a href="/memo">Memo</a>
+        <a href="/info">My Info</a>
+    </nav>
+
+    <div class="container">
+        <h2>My Memo</h2>
+        <textarea id="memo-content" rows="10" placeholder="Write something here..."></textarea>
+        <button onclick="saveMemo()">Save Memo</button>
+        <div id="success-message" class="success-msg" style="display: none;"></div>
+    </div>
+
+    <script>
+        // Load existing memo
+        fetch('/memo-data')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('memo-content').value = data.content;
+            });
+
+        function saveMemo() {
+            const content = document.getElementById('memo-content').value;
+            fetch('/memo-data', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: content })
+            })
+            .then(res => res.json())
+            .then(data => {
+                const msg = document.getElementById('success-message');
+                msg.textContent = data.message;
+                msg.style.display = 'block';
+                setTimeout(() => { msg.style.display = 'none'; }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

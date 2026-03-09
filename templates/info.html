@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Simple App - My Info</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Todo</a>
+        <a href="/memo">Memo</a>
+        <a href="/info">My Info</a>
+    </nav>
+
+    <div class="container">
+        <h2>My Information</h2>
+        <p><strong>Current Name:</strong> <span id="display-name"></span></p>
+        <p><strong>Current Email:</strong> <span id="display-email"></span></p>
+
+        <hr style="border: 0.5px solid #ffe5d9; margin: 20px 0;">
+
+        <label for="name-input">Edit Name:</label>
+        <input type="text" id="name-input" placeholder="Enter your name">
+
+        <label for="email-input">Edit Email:</label>
+        <input type="email" id="email-input" placeholder="Enter your email">
+
+        <button onclick="saveInfo()">Save Info</button>
+        <div id="success-message" class="success-msg" style="display: none;"></div>
+    </div>
+
+    <script>
+        // Load existing info
+        fetch('/info-data')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('display-name').textContent = data.name;
+                document.getElementById('display-email').textContent = data.email;
+                document.getElementById('name-input').value = data.name;
+                document.getElementById('email-input').value = data.email;
+            });
+
+        function saveInfo() {
+            const name = document.getElementById('name-input').value;
+            const email = document.getElementById('email-input').value;
+
+            fetch('/info-data', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, email: email })
+            })
+            .then(res => res.json())
+            .then(data => {
+                const msg = document.getElementById('success-message');
+                msg.textContent = data.message;
+                msg.style.display = 'block';
+
+                // Update display text
+                document.getElementById('display-name').textContent = name;
+                document.getElementById('display-email').textContent = email;
+
+                setTimeout(() => { msg.style.display = 'none'; }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
