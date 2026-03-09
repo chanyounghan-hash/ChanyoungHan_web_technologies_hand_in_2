@@ -28,11 +28,6 @@ project/ app.py requirements.txt
 
 Installation
 
-1.  Clone the repository git clone
-    https://github.com/YOUR_USERNAME/YOUR_REPO.git cd YOUR_REPO
-
-2.  Install dependencies pip install -r
-
 If Flask is not installed: pip install flask
 
 Running the Application
